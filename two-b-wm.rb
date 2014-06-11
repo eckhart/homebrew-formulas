@@ -6,7 +6,7 @@ class TwoBWm < Formula
   depends_on :x11
   url('https://github.com/venam/2bwm.git',
       :using => :git,
-      :revision => '52a097ca644eb571b22a135951c945fcca57a25c')
+      :revision => '10faff5aea10a7838733cefd766a1660c4284100')
 
   def install
     system "make"
@@ -29,28 +29,46 @@ end
 
 __END__
 diff --git a/config.h b/config.h
-index 6b3b6db..361d47c 100644
+index 6b3b6db..e6fad72 100644
 --- a/config.h
 +++ b/config.h
-@@ -13,13 +13,13 @@ static const float    resize_keep_aspect_ratio= 1.03;
+@@ -1,6 +1,6 @@
+ ///---User configurable stuff---///
+ ///---Modifiers---///
+-#define MOD             XCB_MOD_MASK_4       /* Super/Windows key  or check xmodmap(1) with -pm*/
++#define MOD             XCB_MOD_MASK_1       /* Super/Windows key  or check xmodmap(1) with -pm*/
+ ///--Speed---///
+ /* Move this many pixels when moving or resizing with keyboard unless the window has hints saying otherwise.
+  *0)move step slow   1)move step fast
+@@ -13,15 +13,15 @@ static const float    resize_keep_aspect_ratio= 1.03;
  ///---Offsets---///
  /*0)offsetx          1)offsety
   *2)maxwidth         3)maxheight */
 -static const uint8_t offsets[] = {0,0,0,0};
-+static const uint8_t offsets[] = {22,0,44,44};
++static const uint8_t offsets[] = {22,0,44,22};
  ///---Colors---///
  /*0)focuscol         1)unfocuscol
   *2)fixedcol         3)unkilcol
   *4)fixedunkilcol    5)outerbordercol
   *6)emptycol         */
 -static const char *colors[] = {"#35586c","#333333","#7a8c5c","#ff6666","#cc9933","#0d131a","#000000"};
-+static const char *colors[] = {"#ff9500","#333333","#7a8c5c","#ff6666","#cc9933","#0d131a","#000000"};
++static const char *colors[] = {"#707070","#353535","#0d131c","#c2060f","#c2060f","#0d131c","#0d131c"};
  /* if this is set to true the inner border and outer borders colors will be swapped */
- static const bool inverted_colors = true;
+-static const bool inverted_colors = true;
++static const bool inverted_colors = false;
  ///---Cursor---///
-@@ -37,9 +37,9 @@ static const uint8_t borders[] = {3,5,5,4};
+ /* default position of the cursor:
+  * correct values are:
+@@ -32,14 +32,14 @@ static const bool inverted_colors = true;
+ /*0) Outer border size. If you put this negative it will be a square.
+  *1) Full borderwidth    2) Magnet border size    
+  *3) Resize border size  */
+-static const uint8_t borders[] = {3,5,5,4};
++static const uint8_t borders[] = {3,7,7,7};
+ /* Windows that won't have a border.*/
  #define LOOK_INTO "WM_NAME"
- static const char *ignore_names[] = {"bar", "xclock"};
+-static const char *ignore_names[] = {"bar", "xclock"};
++static const char *ignore_names[] = {"bar"};
  ///--Menus and Programs---///
 -static const char *menucmd[]   = { "/usr/bin/my_menu.sh", NULL };
 -static const char *gmrun[]     = { "/usr/bin/gmrun",NULL};
@@ -61,23 +79,9 @@ index 6b3b6db..361d47c 100644
  static const char *click1[]    = { "xdotool","click", "1", NULL };
  static const char *click2[]    = { "xdotool","click", "2", NULL };
  static const char *click3[]    = { "xdotool","click", "3", NULL };
-@@ -143,15 +143,15 @@ static key keys[] = {
-     {  MOD ,              XK_comma,      changescreen,      {.i=1}},
-     {  MOD ,              XK_period,     changescreen,      {.i=0}},
-     // Raise or lower a window
--    {  MOD ,              XK_r,          raiseorlower,      {.i=0}},
-+    //{  MOD ,              XK_r,          raiseorlower,      {.i=0}},
-     // Next/Previous workspace
--    {  MOD ,              XK_v,          nextworkspace,     {.i=0}},
--    {  MOD ,              XK_c,          prevworkspace,     {.i=0}},
--    // Move to Next/Previous workspace
--    {  MOD |SHIFT ,       XK_v,          sendtonextworkspace,{.i=0}},
--    {  MOD |SHIFT ,       XK_c,          sendtoprevworkspace,{.i=0}},
-+    //{  MOD ,              XK_v,          nextworkspace,     {.i=0}},
-+    //{  MOD ,              XK_c,          prevworkspace,     {.i=0}},
-+    //// Move to Next/Previous workspace
-+    //{  MOD |SHIFT ,       XK_v,          sendtonextworkspace,{.i=0}},
-+    //{  MOD |SHIFT ,       XK_c,          sendtoprevworkspace,{.i=0}},
+@@ -151,7 +151,7 @@ static key keys[] = {
+     {  MOD |SHIFT ,       XK_v,          sendtonextworkspace,{.i=0}},
+     {  MOD |SHIFT ,       XK_c,          sendtoprevworkspace,{.i=0}},
      // Iconify the window
 -    {  MOD ,              XK_i,          hide,              {.i=0}},
 +    //{  MOD ,              XK_i,          hide,              {.i=0}},
