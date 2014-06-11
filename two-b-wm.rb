@@ -2,7 +2,7 @@ require 'formula'
 
 class TwoBWm < Formula
   homepage 'https://github.com/venam/2bwm'
-  version '2013-3'
+  version '2014-1'
   depends_on :x11
   url('https://github.com/venam/2bwm.git',
       :using => :git,
